@@ -5,6 +5,54 @@ const state = {
   paypalLoadedFor: null
 };
 
+const fallbackConfig = {
+  serverIp: "play.nexiscraft.cz",
+  serverVersion: "Java 1.21+",
+  currency: "EUR",
+  paypalClientId: "",
+  paypalMode: "sandbox",
+  paysafecardConfigured: false
+};
+
+const fallbackProducts = [
+  {
+    id: "starter-pack",
+    name: "Survival Starter Pack",
+    type: "bundle",
+    price: 4.99,
+    accent: "ember",
+    description: "Balicek na pohodlny start pre novych hracov.",
+    benefits: ["startovacie kluce a bonusove mince", "kozmeticky tag v chate", "vyhody sa daju upravit podla servera"]
+  },
+  {
+    id: "rank-sentinel",
+    name: "Rank Sentinel",
+    type: "rank",
+    price: 9.99,
+    accent: "moss",
+    description: "Prvy custom rank pre aktivnych survival hracov.",
+    benefits: ["custom prefix", "pripravene miesto na /home, /kit alebo kozmetiku", "bez tvrdeho pay-to-win nastavenia"]
+  },
+  {
+    id: "rank-mystic",
+    name: "Rank Mystic",
+    type: "rank",
+    price: 19.99,
+    accent: "amethyst",
+    description: "Vyssi custom rank s fantasy stylom NexisCraftu.",
+    benefits: ["vlastna farba mena", "extra kozmeticke odmeny", "vyhody doplnime podla tvojho zoznamu"]
+  },
+  {
+    id: "rank-dragon",
+    name: "Rank Dragon",
+    type: "rank",
+    price: 34.99,
+    accent: "dragon",
+    description: "Najvyssi survival rank s dragon temou.",
+    benefits: ["premium prefix", "specialne efekty alebo crate kluce", "finalne vyhody sa daju dopisat neskor"]
+  }
+];
+
 const money = (value) =>
   new Intl.NumberFormat("sk-SK", {
     style: "currency",
@@ -14,7 +62,8 @@ const money = (value) =>
 const qs = (selector) => document.querySelector(selector);
 
 async function api(path, options = {}) {
-  const response = await fetch(path, {
+  const normalizedPath = path.startsWith("/") ? path.slice(1) : path;
+  const response = await fetch(normalizedPath, {
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -240,7 +289,10 @@ function bindUi() {
 }
 
 async function init() {
-  const [config, products] = await Promise.all([api("/api/config"), api("/api/products")]);
+  const [config, products] = await Promise.all([
+    api("/api/config").catch(() => fallbackConfig),
+    api("/api/products").catch(() => ({ products: fallbackProducts }))
+  ]);
   state.config = config;
   state.products = products.products;
   qs("#server-ip-label").textContent = config.serverIp;

@@ -111,7 +111,7 @@ a {
 }
 
 .hero-media {
-  background-image: url("/assets/hero-nexiscraft.png");
+  background-image: url("assets/hero-nexiscraft.png");
   background-size: cover;
   background-position: center;
   transform: scale(1.02);
