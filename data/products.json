@@ -1,0 +1,56 @@
+{
+  "products": [
+    {
+      "id": "starter-pack",
+      "name": "Survival Starter Pack",
+      "type": "bundle",
+      "price": 4.99,
+      "accent": "ember",
+      "description": "Balicek na pohodlny start pre novych hracov.",
+      "benefits": [
+        "startovacie kluce a bonusove mince",
+        "kozmeticky tag v chate",
+        "vyhody sa daju upravit podla tvojho servera"
+      ]
+    },
+    {
+      "id": "rank-sentinel",
+      "name": "Rank Sentinel",
+      "type": "rank",
+      "price": 9.99,
+      "accent": "moss",
+      "description": "Prvy custom rank pre aktivnych survival hracov.",
+      "benefits": [
+        "custom prefix",
+        "pripravene miesto na /home, /kit alebo kozmetiku",
+        "bez tvrdeho pay-to-win nastavenia"
+      ]
+    },
+    {
+      "id": "rank-mystic",
+      "name": "Rank Mystic",
+      "type": "rank",
+      "price": 19.99,
+      "accent": "amethyst",
+      "description": "Vyssi custom rank s fantasy stylom NexisCraftu.",
+      "benefits": [
+        "vlastna farba mena",
+        "extra kozmeticke odmeny",
+        "vyhody doplnime podla tvojho zoznamu"
+      ]
+    },
+    {
+      "id": "rank-dragon",
+      "name": "Rank Dragon",
+      "type": "rank",
+      "price": 34.99,
+      "accent": "dragon",
+      "description": "Najvyssi survival rank s dragon temou.",
+      "benefits": [
+        "premium prefix",
+        "specialne efekty alebo crate kluce",
+        "finalne vyhody sa daju dopisat neskor"
+      ]
+    }
+  ]
+}

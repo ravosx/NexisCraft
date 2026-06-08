@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="sk">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NexisCraft.cz survival Minecraft server a obchod s rankmi.">
+    <title>NexisCraft.cz | Survival</title>
+    <link rel="icon" href="/assets/server-icon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="NexisCraft.cz domov">
+        <img src="/assets/server-icon.png" alt="">
+        <span>NexisCraft.cz</span>
+      </a>
+      <nav class="top-nav" aria-label="Hlavna navigacia">
+        <a href="#survival">Survival</a>
+        <a href="#ranky">Ranky</a>
+        <a href="#checkout">Obchod</a>
+        <a href="#platby">Platby</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" role="img" aria-label="Fantasy survival spawn s dragon temou"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-inner">
+          <p class="eyebrow">Survival server</p>
+          <h1 id="hero-title">NexisCraft.cz</h1>
+          <p class="hero-copy">
+            Temny fantasy survival s komunitou, custom rankmi a obchodom pripravenym na bezpecne platby.
+          </p>
+          <div class="hero-actions">
+            <button class="copy-button" id="copy-ip" type="button">
+              <i data-lucide="copy"></i>
+              <span id="server-ip-label">play.nexiscraft.cz</span>
+            </button>
+            <a class="button primary" href="#checkout">
+              <i data-lucide="shopping-bag"></i>
+              <span>Obchod</span>
+            </a>
+          </div>
+          <div class="server-strip" aria-label="Server info">
+            <span><strong id="server-version">Java 1.21+</strong> verzia</span>
+            <span><strong>Survival</strong> sekcia</span>
+            <span><strong>EU</strong> komunita</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="band survival-band" id="survival" aria-labelledby="survival-title">
+        <div class="section-inner split">
+          <div>
+            <p class="eyebrow">Prva sekcia</p>
+            <h2 id="survival-title">Survival</h2>
+            <p>
+              Zaklad je klasicky survival s citom pre grind, obchodovanie a komunitne eventy. Vyhody rankov su pripravene ako struktura, finalny zoznam doplnime podla toho, co mi este posles.
+            </p>
+          </div>
+          <div class="steps" aria-label="Ako sa pripojit">
+            <div class="step">
+              <span>1</span>
+              <strong>Multiplayer</strong>
+              <p>Otvor Minecraft Java multiplayer.</p>
+            </div>
+            <div class="step">
+              <span>2</span>
+              <strong>Server IP</strong>
+              <p>Pridaj adresu <button class="inline-copy" id="copy-ip-inline" type="button">play.nexiscraft.cz</button>.</p>
+            </div>
+            <div class="step">
+              <span>3</span>
+              <strong>Survival</strong>
+              <p>Vyber survival a zacni hrat.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band shop-band" id="ranky" aria-labelledby="ranky-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Custom ranky</p>
+            <h2 id="ranky-title">Survival obchod</h2>
+          </div>
+          <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="band checkout-band" id="checkout" aria-labelledby="checkout-title">
+        <div class="section-inner checkout-layout">
+          <div>
+            <p class="eyebrow">Checkout</p>
+            <h2 id="checkout-title">Vyber rank a zaplat</h2>
+            <p>
+              Objednavka drzi cenu na serveri a platobne kluce ostavaju mimo browsera. PayPal a karta idu cez PayPal checkout, paysafecard cez Paysafe payment handle a redirect.
+            </p>
+            <div class="payment-notice" id="return-status" hidden></div>
+          </div>
+
+          <form class="checkout-tool" id="checkout-form">
+            <label for="nickname">Minecraft nick</label>
+            <input id="nickname" name="nickname" autocomplete="username" minlength="3" maxlength="16" pattern="[A-Za-z0-9_]{3,16}" placeholder="TvojNick" required>
+
+            <label for="product-select">Produkt</label>
+            <select id="product-select" name="product" required></select>
+
+            <fieldset>
+              <legend>Platba</legend>
+              <div class="segmented" role="group" aria-label="Metoda platby">
+                <button type="button" class="segment active" data-payment="paypal">
+                  <i data-lucide="wallet"></i>
+                  <span>PayPal</span>
+                </button>
+                <button type="button" class="segment" data-payment="card">
+                  <i data-lucide="credit-card"></i>
+                  <span>Karta</span>
+                </button>
+                <button type="button" class="segment" data-payment="paysafecard">
+                  <i data-lucide="ticket"></i>
+                  <span>paysafecard</span>
+                </button>
+              </div>
+            </fieldset>
+
+            <div class="checkout-total">
+              <span>Spolu</span>
+              <strong id="checkout-total">0.00 EUR</strong>
+            </div>
+
+            <div id="paypal-buttons" class="paypal-buttons"></div>
+            <button class="button primary full" id="manual-pay-button" type="submit">
+              <i data-lucide="lock"></i>
+              <span>Pokracovat k platbe</span>
+            </button>
+            <p class="status-line" id="checkout-status" role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="band payment-band" id="platby" aria-labelledby="payment-title">
+        <div class="section-inner payment-grid">
+          <div>
+            <p class="eyebrow">Platobne metody</p>
+            <h2 id="payment-title">PayPal, karta, paysafecard</h2>
+          </div>
+          <div class="payment-item">
+            <i data-lucide="wallet-cards"></i>
+            <strong>PayPal</strong>
+            <span>Sandbox/live prepnutie cez `.env`.</span>
+          </div>
+          <div class="payment-item">
+            <i data-lucide="credit-card"></i>
+            <strong>Credit/debit card</strong>
+            <span>Karta je spracovana cez PayPal checkout, nie lokalne.</span>
+          </div>
+          <div class="payment-item">
+            <i data-lucide="ticket-check"></i>
+            <strong>paysafecard</strong>
+            <span>Redirect cez Paysafe Payments API po vlozeni merchant klucov.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>NexisCraft.cz</span>
+      <span>Nie sme sucastou Mojang AB ani Microsoftu.</span>
+      <a href="#top">Hore</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "nexiscraft-website",
+  "version": "1.0.0",
+  "description": "NexisCraft.cz Minecraft survival website with shop checkout preparation.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

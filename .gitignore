@@ -1,0 +1,4 @@
+.env
+data/payment-orders.json
+node_modules/
+*.log

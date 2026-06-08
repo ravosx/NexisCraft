@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: nexiscraft-website
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/config
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SERVER_IP
+        value: play.nexiscraft.cz
+      - key: SERVER_VERSION
+        value: Java 1.21+
+      - key: CURRENCY
+        value: EUR
+      - key: PAYPAL_MODE
+        value: sandbox
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYSAFE_API_BASE
+        value: https://api.test.paysafe.com/paymenthub/v1
+      - key: PAYSAFE_API_KEY_BASE64
+        sync: false
+      - key: PAYSAFE_ACCOUNT_ID
+        sync: false
